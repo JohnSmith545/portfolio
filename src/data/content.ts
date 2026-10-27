@@ -182,24 +182,12 @@ export const projects: Project[] = [
     period: "Mar 2026 - Jun 2026",
     summary: "Internal HR and operations platform covering people, payroll, attendance, staffing and skills.",
     points: [
-      "Payroll computation and payslips, including mid-period salary changes and late, undertime and absence deductions",
+      "Attendance-based payroll computation and payslips",
       "Role-based access for HR, manager, executive and admin users",
       "Staffing planner, skills rubrics and leaderboard, cohort enrollment and attendance exports",
       "Server-side cursor pagination for large lists",
     ],
     stack: ["TypeScript", "React", "tRPC", "Firebase", "Google Cloud"],
-    screenshots: [
-      {
-        src: "/projects/tms-payroll.png",
-        alt: "Payroll run table with working days, minutes rendered, overtime, late, absence, gross and net pay per employee",
-        caption: "Monthly payroll run with attendance-based adjustments",
-      },
-      {
-        src: "/projects/tms-payslip.png",
-        alt: "Payslip showing time rendered and late and absence deductions itemised against gross pay",
-        caption: "Payslip with itemised late and absence deductions",
-      },
-    ],
   },
   {
     name: "Flinki",

@@ -2,7 +2,6 @@ import type { ReactNode } from "react"; // Children type
 import Image from "next/image"; // Optimised, lazy-loaded screenshots
 import { integrationShots, integrations, projects, type Project, type Screenshot } from "@/data/content"; // Project list, integrations and types
 import { Section } from "@/components/Section"; // Numbered section wrapper
-import { EvaluationLoop, IdentificationPipeline } from "@/components/Diagrams"; // Reviva case study diagrams
 
 // Small pill tags for the tech used on a project
 function Stack({ items }: { items: string[] }) {
@@ -101,7 +100,7 @@ function ProjectCard({ project, children }: { project: Project; children?: React
   );
 }
 
-// Projects, with Reviva expanded into a case study with diagrams
+// Projects, with Reviva expanded into a case study with screenshots and integrations
 export function Projects() {
   const [reviva, ...rest] = projects;
   return (
@@ -111,9 +110,7 @@ export function Projects() {
       </p>
       <div className="space-y-6">
         <ProjectCard project={reviva}>
-          <div className="mt-6 space-y-4">
-            <IdentificationPipeline />
-            <EvaluationLoop />
+          <div className="mt-6">
             <Integrations />
           </div>
         </ProjectCard>
