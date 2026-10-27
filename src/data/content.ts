@@ -17,7 +17,7 @@ export const stats = [
   { value: "2", label: "client platforms as main contributor" },
   { value: "6", label: "AI features shipped on Reviva" },
   { value: "9", label: "third-party integrations in production" },
-  { value: "4", label: "certifications (Google Cloud, Hytel, EF SET)" },
+  { value: "54x", label: "faster AI price suggestions (245s to 4.5s)" },
 ];
 
 // Short cards that summarise the AI work before the deep dive
@@ -28,7 +28,7 @@ export const highlights = [
   },
   {
     title: "Evaluation harness",
-    body: "A test-set reader, scorer and report that measure accuracy, then drive tuning of token caps and thinking level.",
+    body: "A hand-checked test set, scorer and before/after report. Raised colour accuracy from 90% to 98% with brand and category held at 100%.",
   },
   {
     title: "Grounded assistant",
@@ -36,7 +36,7 @@ export const highlights = [
   },
   {
     title: "Privacy-safe observability",
-    body: "A fail-open tracer that records timing, model and token counts, never photos or personal data.",
+    body: "A fail-open tracer that records timing, model and token counts, never photos or personal data. 700+ traced calls at ~99.6% success and ~$0.003 each.",
   },
 ];
 
@@ -127,8 +127,8 @@ export const projects: Project[] = [
       "Resale and consignment marketplace with staff, seller and buyer portals, an online shop and an in-store till.",
     points: [
       "Multimodal AI product identification with Gemini on Vertex AI through Genkit",
-      "AI accuracy evaluation harness used to tune accuracy, latency and cost",
-      "AI retail price suggestions with timeouts, retries and plausibility checks",
+      "AI accuracy evaluation harness: colour accuracy 90% to 98%, brand and category held at 100%",
+      "AI price suggestions cut from ~245s to ~4.5s and ~99.9% cheaper per call by capping Gemini's thinking budget after tracing exposed runaway reasoning",
       "Grounded AI help assistant with rate limiting and prompt-injection hardening",
       "Privacy-safe, fail-open AI tracing; Gemini model migration; data-residency regions",
       "Payments end to end: Stripe checkout with wallet pay, refunds, store credit and Stripe Connect payouts to sellers, plus a SumUp card reader at the in-store till",
