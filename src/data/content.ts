@@ -39,6 +39,22 @@ export const highlights = [
   },
 ];
 
+// How I work with clients and teams, beyond the code
+export const workStyle = [
+  {
+    title: "Direct client communication",
+    body: "I work with the client week to week: turning their feedback and business decisions into user stories, explaining each release in plain language, and running live demos.",
+  },
+  {
+    title: "Test-driven and measured",
+    body: "Backend work starts with a failing test, AI features ship with an evaluation harness, and production behaviour is traced.",
+  },
+  {
+    title: "Ship, then verify",
+    body: "Dev, stage and production releases with CI, written QA steps for testers, and retests before anything is called done.",
+  },
+];
+
 export type Project = {
   name: string;
   role: "Main contributor" | "Feature contributor";
