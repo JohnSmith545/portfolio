@@ -92,6 +92,30 @@ export const integrations = [
   },
 ];
 
+// Screenshots of the integrations as staff and buyers see them in Reviva
+export const integrationShots: Screenshot[] = [
+  {
+    src: "/projects/reviva-stripe-checkout.png",
+    alt: "Guest checkout with Stripe address and card fields styled to match the shop, and an order summary",
+    caption: "Stripe checkout with Address and Payment Elements",
+  },
+  {
+    src: "/projects/reviva-stripe-payouts.png",
+    alt: "Monthly seller payout run moving from review to Stripe transfer, with cash and store credit split and a held-back seller",
+    caption: "Monthly seller payouts through Stripe Connect",
+  },
+  {
+    src: "/projects/reviva-ebay-listings.png",
+    alt: "Platform listings page tracking eBay listings as live, delisted or needing attention, with a sync failure alert",
+    caption: "eBay listing sync with failure alerts",
+  },
+  {
+    src: "/projects/reviva-shipping-labels.png",
+    alt: "Online orders queue with create and recover shipping label actions for each order",
+    caption: "Order queue with Sendcloud shipping labels",
+  },
+];
+
 export type Project = {
   name: string;
   role: "Main contributor" | "Feature contributor";

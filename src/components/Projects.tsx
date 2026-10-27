@@ -1,6 +1,6 @@
 import type { ReactNode } from "react"; // Children type
 import Image from "next/image"; // Optimised, lazy-loaded screenshots
-import { integrations, projects, type Project, type Screenshot } from "@/data/content"; // Project list, integrations and types
+import { integrationShots, integrations, projects, type Project, type Screenshot } from "@/data/content"; // Project list, integrations and types
 import { Section } from "@/components/Section"; // Numbered section wrapper
 import { EvaluationLoop, IdentificationPipeline } from "@/components/Diagrams"; // Reviva case study diagrams
 
@@ -60,6 +60,7 @@ function Integrations() {
           </li>
         ))}
       </ul>
+      <Gallery shots={integrationShots} />
     </div>
   );
 }
