@@ -1,5 +1,6 @@
 import type { ReactNode } from "react"; // Children type
-import { projects, type Project } from "@/data/content"; // Project list and type
+import Image from "next/image"; // Optimised, lazy-loaded screenshots
+import { projects, type Project, type Screenshot } from "@/data/content"; // Project list and types
 import { Section } from "@/components/Section"; // Numbered section wrapper
 import { EvaluationLoop, IdentificationPipeline } from "@/components/Diagrams"; // Reviva case study diagrams
 
@@ -13,6 +14,34 @@ function Stack({ items }: { items: string[] }) {
         </li>
       ))}
     </ul>
+  );
+}
+
+// Captioned screenshots; each opens full size in a new tab
+function Gallery({ shots }: { shots: Screenshot[] }) {
+  return (
+    <div className="mt-6 grid gap-4 sm:grid-cols-2">
+      {shots.map((shot) => (
+        <figure key={shot.src}>
+          <a
+            href={shot.src}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block overflow-hidden rounded border border-border transition-colors hover:border-accent"
+          >
+            <Image
+              src={shot.src}
+              alt={shot.alt}
+              width={1440}
+              height={900}
+              sizes="(min-width: 1024px) 480px, (min-width: 640px) 50vw, 100vw"
+              className="h-auto w-full"
+            />
+          </a>
+          <figcaption className="mt-2 font-mono text-xs text-muted">{shot.caption}</figcaption>
+        </figure>
+      ))}
+    </div>
   );
 }
 
@@ -33,6 +62,7 @@ function ProjectCard({ project, children }: { project: Project; children?: React
         <span className="ml-auto font-mono text-sm text-muted">{project.period}</span>
       </div>
       <p className="mt-3 text-muted">{project.summary}</p>
+      {project.screenshots && <Gallery shots={project.screenshots} />}
       {children}
       <ul className="mt-6 space-y-2">
         {project.points.map((point) => (
@@ -57,8 +87,7 @@ export function Projects() {
   return (
     <Section id="projects" index="02 projects" title="Projects">
       <p className="mb-8 max-w-2xl text-muted">
-        Client platforms I built at Hytel. Client names and data stay private, so the case study uses
-        diagrams instead of screenshots.
+        Client platforms I built at Hytel. Screenshots use test data with client branding blurred.
       </p>
       <div className="space-y-6">
         <ProjectCard project={reviva}>

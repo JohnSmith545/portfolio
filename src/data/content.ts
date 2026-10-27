@@ -62,6 +62,14 @@ export type Project = {
   summary: string;
   points: string[];
   stack: string[];
+  screenshots?: Screenshot[];
+};
+
+// A product screenshot taken with test data and client branding blurred
+export type Screenshot = {
+  src: string;
+  alt: string;
+  caption: string;
 };
 
 export const projects: Project[] = [
@@ -82,6 +90,28 @@ export const projects: Project[] = [
       "Worked directly with the client: feedback and decisions into user stories, plain-language release updates, live demos",
     ],
     stack: ["Gemini", "Vertex AI", "Genkit", "TypeScript", "React", "tRPC", "Firebase", "Stripe"],
+    screenshots: [
+      {
+        src: "/projects/reviva-ai-identify.png",
+        alt: "Staff item form with brand, category, colour, material and condition filled in by AI from a photo",
+        caption: "AI fills the item form from a single photo",
+      },
+      {
+        src: "/projects/reviva-ai-listing.png",
+        alt: "Listing section with an AI-written SEO title and a held-back AI description with a brand mismatch warning",
+        caption: "AI listing copy, held back when its brand reading disagrees with staff",
+      },
+      {
+        src: "/projects/reviva-ai-price.png",
+        alt: "AI suggested retail price with a low-confidence label, reasoning and a one-click Use button",
+        caption: "AI retail price suggestion with a confidence label",
+      },
+      {
+        src: "/projects/reviva-product.png",
+        alt: "Buyer product page showing a tan leather satchel, price, item details and a virtual try-on button",
+        caption: "Buyer product page with virtual try-on",
+      },
+    ],
   },
   {
     name: "TMS",
@@ -95,6 +125,18 @@ export const projects: Project[] = [
       "Server-side cursor pagination for large lists",
     ],
     stack: ["TypeScript", "React", "tRPC", "Firebase", "Google Cloud"],
+    screenshots: [
+      {
+        src: "/projects/tms-payroll.png",
+        alt: "Payroll run table with working days, minutes rendered, overtime, late, absence, gross and net pay per employee",
+        caption: "Monthly payroll run with attendance-based adjustments",
+      },
+      {
+        src: "/projects/tms-payslip.png",
+        alt: "Payslip showing time rendered and late and absence deductions itemised against gross pay",
+        caption: "Payslip with itemised late and absence deductions",
+      },
+    ],
   },
   {
     name: "Flinki",
