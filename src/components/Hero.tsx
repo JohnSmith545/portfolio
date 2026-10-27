@@ -36,7 +36,7 @@ export function Hero() {
         </a>
       </div>
 
-      <dl className="mt-14 grid gap-4 sm:grid-cols-3">
+      <dl className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => (
           <div key={stat.label} className="flex flex-col rounded border border-border bg-surface p-5">
             <dt className="text-sm text-muted">{stat.label}</dt>

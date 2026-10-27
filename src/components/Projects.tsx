@@ -1,6 +1,6 @@
 import type { ReactNode } from "react"; // Children type
 import Image from "next/image"; // Optimised, lazy-loaded screenshots
-import { projects, type Project, type Screenshot } from "@/data/content"; // Project list and types
+import { integrations, projects, type Project, type Screenshot } from "@/data/content"; // Project list, integrations and types
 import { Section } from "@/components/Section"; // Numbered section wrapper
 import { EvaluationLoop, IdentificationPipeline } from "@/components/Diagrams"; // Reviva case study diagrams
 
@@ -41,6 +41,25 @@ function Gallery({ shots }: { shots: Screenshot[] }) {
           <figcaption className="mt-2 font-mono text-xs text-muted">{shot.caption}</figcaption>
         </figure>
       ))}
+    </div>
+  );
+}
+
+// Third-party systems wired into Reviva, one small card each
+function Integrations() {
+  return (
+    <div className="rounded border border-border bg-surface-2 p-5">
+      <p className="font-mono text-xs uppercase tracking-wide text-muted">
+        Production integrations: signed webhooks, idempotent processing, retry sweeps
+      </p>
+      <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+        {integrations.map((item) => (
+          <li key={item.name} className="rounded border border-border bg-surface p-4">
+            <h4 className="font-mono text-sm font-semibold text-accent">{item.name}</h4>
+            <p className="mt-1 text-sm leading-relaxed text-muted">{item.body}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -94,6 +113,7 @@ export function Projects() {
           <div className="mt-6 space-y-4">
             <IdentificationPipeline />
             <EvaluationLoop />
+            <Integrations />
           </div>
         </ProjectCard>
         <div className="grid gap-6 lg:grid-cols-2">

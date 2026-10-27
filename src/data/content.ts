@@ -16,6 +16,7 @@ export const profile = {
 export const stats = [
   { value: "2", label: "client platforms as main contributor" },
   { value: "6", label: "AI features shipped on Reviva" },
+  { value: "9", label: "third-party integrations in production" },
   { value: "4", label: "certifications (Google Cloud, Hytel, EF SET)" },
 ];
 
@@ -55,6 +56,42 @@ export const workStyle = [
   },
 ];
 
+// Third-party systems wired into Reviva, shown under its case study
+export const integrations = [
+  {
+    name: "Stripe",
+    body: "One-step checkout with Payment and Address Elements and wallet pay, refunds, store credit and Connect payouts to sellers.",
+  },
+  {
+    name: "eBay",
+    body: "Sales sync into orders with seller payout lines, cancellations and refunds void payouts, fee split per seller, and auto-delisting.",
+  },
+  {
+    name: "Sendcloud",
+    body: "Shipping and return labels, signed status webhooks, and a 6-hourly sweep that settles or flags cancelled shipments.",
+  },
+  {
+    name: "SumUp",
+    body: "Card reader at the in-store till, including split cash and card sales and refunds keyed to the original payment.",
+  },
+  {
+    name: "Twilio WhatsApp",
+    body: "Seller conversations and notifications over WhatsApp, with inbound webhook filtering.",
+  },
+  {
+    name: "Klaviyo and Mailgun",
+    body: "Consent-based marketing events and newsletter sign-ups, plus transactional email.",
+  },
+  {
+    name: "PhotoRoom",
+    body: "Automatic product photo editing that feeds straight into AI identification.",
+  },
+  {
+    name: "ConsignCloud",
+    body: "Migration of the client's live inventory with an idempotent, re-runnable import using deterministic ids.",
+  },
+];
+
 export type Project = {
   name: string;
   role: "Main contributor" | "Feature contributor";
@@ -85,11 +122,13 @@ export const projects: Project[] = [
       "AI retail price suggestions with timeouts, retries and plausibility checks",
       "Grounded AI help assistant with rate limiting and prompt-injection hardening",
       "Privacy-safe, fail-open AI tracing; Gemini model migration; data-residency regions",
-      "Stripe payments, refunds, store credit and payouts, plus eBay, shipping and email marketing integrations",
+      "Payments end to end: Stripe checkout with wallet pay, refunds, store credit and Stripe Connect payouts to sellers, plus a SumUp card reader at the in-store till",
+      "Nine production integrations (Stripe, eBay, Sendcloud, SumUp, Twilio WhatsApp, Klaviyo, Mailgun, PhotoRoom, ConsignCloud) built on signed webhooks, idempotent processing and retry sweeps",
+      "Migrated the client's live inventory from ConsignCloud with an idempotent, re-runnable import",
       "Dev, stage and production releases on Firebase and Google Cloud with GitHub Actions",
       "Worked directly with the client: feedback and decisions into user stories, plain-language release updates, live demos",
     ],
-    stack: ["Gemini", "Vertex AI", "Genkit", "TypeScript", "React", "tRPC", "Firebase", "Stripe"],
+    stack: ["Gemini", "Vertex AI", "Genkit", "TypeScript", "React", "tRPC", "Firebase", "Stripe", "eBay API", "Sendcloud"],
     screenshots: [
       {
         src: "/projects/reviva-ai-identify.png",
@@ -173,7 +212,21 @@ export const skills = [
   { group: "Frontend", items: ["React", "Next.js", "Vite", "Tailwind CSS", "TanStack Query"] },
   {
     group: "Backend and cloud",
-    items: ["Node.js", "tRPC", "Zod", "Firebase", "Google Cloud", "PostgreSQL", "MySQL", "Stripe"],
+    items: ["Node.js", "tRPC", "Zod", "Firebase", "Google Cloud", "PostgreSQL", "MySQL"],
+  },
+  {
+    group: "Integrations",
+    items: [
+      "Stripe (Payments, Connect)",
+      "eBay APIs",
+      "Sendcloud",
+      "SumUp",
+      "Twilio WhatsApp",
+      "Klaviyo",
+      "Mailgun",
+      "Webhooks",
+      "Idempotent processing",
+    ],
   },
   {
     group: "Quality and delivery",
