@@ -2,6 +2,7 @@ import type { ReactNode } from "react"; // Children type
 import { integrationShots, integrations, projects, type Project } from "@/data/content"; // Project list, integrations and types
 import { Section } from "@/components/Section"; // Numbered section wrapper
 import { Gallery } from "@/components/Gallery"; // Screenshots with an on-page lightbox
+import { reveal } from "@/components/reveal"; // Fade-up on scroll
 
 // Small pill tags for the tech used on a project
 function Stack({ items }: { items: string[] }) {
@@ -24,8 +25,8 @@ function Integrations() {
         Production integrations: signed webhooks, idempotent processing, retry sweeps
       </p>
       <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-        {integrations.map((item) => (
-          <li key={item.name} className="rounded border border-border bg-surface p-4">
+        {integrations.map((item, i) => (
+          <li key={item.name} {...reveal(i % 2)} className="card-hover rounded border border-border bg-surface p-4">
             <h4 className="font-mono text-sm font-semibold text-accent">{item.name}</h4>
             <p className="mt-1 text-sm leading-relaxed text-muted">{item.body}</p>
           </li>
@@ -40,7 +41,7 @@ function Integrations() {
 function ProjectCard({ project, children }: { project: Project; children?: ReactNode }) {
   const main = project.role === "Main contributor";
   return (
-    <article className="rounded border border-border bg-surface p-6 sm:p-8">
+    <article {...reveal()} className="rounded border border-border bg-surface p-5 sm:p-8">
       <div className="flex flex-wrap items-center gap-3">
         <h3 className="text-2xl font-semibold">{project.name}</h3>
         <span

@@ -8,7 +8,7 @@ export function Skills() {
     <Section id="skills" index="04 skills" title="Skills">
       <dl className="space-y-6">
         {skills.map((group) => (
-          <div key={group.group} className="grid gap-3 sm:grid-cols-[12rem_1fr]">
+          <div key={group.group} data-reveal="" className="grid gap-3 sm:grid-cols-[12rem_1fr]">
             <dt className="font-mono text-sm text-accent">{group.group}</dt>
             <dd>
               <ul className="flex flex-wrap gap-2">

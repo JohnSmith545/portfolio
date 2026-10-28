@@ -91,13 +91,105 @@ body {
   }
 }
 
+/* Scroll reveal: hidden only when scripts run, so content never gets stuck invisible */
+@media (scripting: enabled) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 600ms ease-out,
+      transform 600ms ease-out;
+    transition-delay: calc(var(--i, 0) * 70ms);
+  }
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Hero entrance: each line rises in turn (--d is its order) */
+.hero-in {
+  animation: rise 600ms ease-out both;
+  animation-delay: calc(var(--d, 0) * 110ms);
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+/* Role line types out letter by letter; letters keep their space so nothing shifts */
+.typed > span {
+  animation: type-in 1ms linear both;
+  animation-delay: calc(500ms + var(--c) * 32ms);
+}
+@keyframes type-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Cards lift with a teal edge on devices that can hover */
+@media (hover: hover) {
+  .card-hover {
+    transition:
+      transform 200ms ease-out,
+      border-color 200ms ease-out,
+      box-shadow 200ms ease-out;
+  }
+  .card-hover:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+    box-shadow: 0 8px 24px -12px color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+}
+
+/* Experience timeline: the line draws down and each dot fills as it is reached */
+.timeline-line {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 1200ms ease-out;
+}
+.timeline.is-visible .timeline-line {
+  transform: scaleY(1);
+}
+.timeline-dot {
+  transition: background-color 400ms ease-out 300ms;
+}
+.is-visible > .timeline-dot {
+  background-color: var(--accent);
+}
+
+/* Mobile menu slides down when opened */
+.mobile-menu:not([hidden]) {
+  animation: slide-down 200ms ease-out;
+}
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
   .cursor,
+  .hero-in,
+  .typed > span,
+  .mobile-menu:not([hidden]),
   .lightbox[open]::backdrop,
   .lightbox[open] .lightbox-image {
     animation: none;
+  }
+  [data-reveal],
+  .timeline-line,
+  .timeline-dot,
+  .card-hover {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

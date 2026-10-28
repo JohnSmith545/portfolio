@@ -1,5 +1,6 @@
 import { profile } from "@/data/content"; // Resume link
 import { MobileMenu } from "@/components/MobileMenu"; // Section links on phones
+import { NavLinks } from "@/components/motion"; // Desktop links with the current section highlighted
 
 const links = [
   { href: "#ai-work", label: "AI work" },
@@ -18,15 +19,7 @@ export function Nav() {
         <a href="#top" className="font-mono text-sm font-semibold text-text">
           <span className="text-accent">juch</span>@portfolio:~$
         </a>
-        <ul className="hidden items-center gap-6 text-sm text-muted md:flex">
-          {links.map((link) => (
-            <li key={link.href}>
-              <a href={link.href} className="transition-colors hover:text-accent">
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <NavLinks links={links} />
         <div className="flex items-center gap-2">
           <a
             href={profile.resume}

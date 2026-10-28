@@ -1,5 +1,6 @@
 import { workStyle } from "@/data/content"; // Working-style cards
 import { Section } from "@/components/Section"; // Numbered section wrapper
+import { reveal } from "@/components/reveal"; // Fade-up on scroll
 
 // Client communication and delivery habits, for teams that value more than code
 export function HowIWork() {
@@ -9,7 +10,8 @@ export function HowIWork() {
         {workStyle.map((item, i) => (
           <li
             key={item.title}
-            className={`rounded border bg-surface p-6 ${i === 0 ? "border-accent" : "border-border"}`}
+            {...reveal(i)}
+            className={`card-hover rounded border bg-surface p-5 sm:p-6 ${i === 0 ? "border-accent" : "border-border"}`}
           >
             <h3 className="font-semibold text-text">{item.title}</h3>
             <p className="mt-2 leading-relaxed text-muted">{item.body}</p>
