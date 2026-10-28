@@ -10,7 +10,7 @@ type Props = {
 // Page section with a terminal-style numbered label above the heading
 export function Section({ id, index, title, children }: Props) {
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className="border-t border-border py-20 sm:py-24">
+    <section id={id} aria-labelledby={`${id}-title`} className="border-t border-border py-14 sm:py-24">
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <p className="font-mono text-sm text-accent">
           {"// "}
@@ -19,7 +19,7 @@ export function Section({ id, index, title, children }: Props) {
         <h2 id={`${id}-title`} className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
           {title}
         </h2>
-        <div className="mt-10">{children}</div>
+        <div className="mt-8 sm:mt-10">{children}</div>
       </div>
     </section>
   );
