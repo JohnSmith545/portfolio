@@ -1,7 +1,7 @@
 import type { ReactNode } from "react"; // Children type
-import Image from "next/image"; // Optimised, lazy-loaded screenshots
-import { integrationShots, integrations, projects, type Project, type Screenshot } from "@/data/content"; // Project list, integrations and types
+import { integrationShots, integrations, projects, type Project } from "@/data/content"; // Project list, integrations and types
 import { Section } from "@/components/Section"; // Numbered section wrapper
+import { Gallery } from "@/components/Gallery"; // Screenshots with an on-page lightbox
 
 // Small pill tags for the tech used on a project
 function Stack({ items }: { items: string[] }) {
@@ -13,34 +13,6 @@ function Stack({ items }: { items: string[] }) {
         </li>
       ))}
     </ul>
-  );
-}
-
-// Captioned screenshots; each opens full size in a new tab
-function Gallery({ shots }: { shots: Screenshot[] }) {
-  return (
-    <div className="mt-6 grid gap-4 sm:grid-cols-2">
-      {shots.map((shot) => (
-        <figure key={shot.src}>
-          <a
-            href={shot.src}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block overflow-hidden rounded border border-border transition-colors hover:border-accent"
-          >
-            <Image
-              src={shot.src}
-              alt={shot.alt}
-              width={1440}
-              height={900}
-              sizes="(min-width: 1024px) 480px, (min-width: 640px) 50vw, 100vw"
-              className="h-auto w-full"
-            />
-          </a>
-          <figcaption className="mt-2 font-mono text-xs text-muted">{shot.caption}</figcaption>
-        </figure>
-      ))}
-    </div>
   );
 }
 

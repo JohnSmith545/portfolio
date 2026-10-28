@@ -57,11 +57,47 @@ body {
   animation: blink 1.1s step-end infinite;
 }
 
+/* On-page image lightbox: full-screen native dialog with a dimmed, blurred backdrop */
+.lightbox {
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+}
+.lightbox::backdrop {
+  background: rgb(5 8 10 / 0.88);
+  backdrop-filter: blur(4px);
+}
+.lightbox[open]::backdrop {
+  animation: fade-in 200ms ease-out;
+}
+.lightbox[open] .lightbox-image {
+  animation: zoom-in 220ms ease-out;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .cursor {
+  .cursor,
+  .lightbox[open]::backdrop,
+  .lightbox[open] .lightbox-image {
     animation: none;
   }
 }
