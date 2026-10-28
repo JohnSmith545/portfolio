@@ -1,5 +1,6 @@
 import { profile } from "@/data/content"; // Email and profile links
 import { Section } from "@/components/Section"; // Numbered section wrapper
+import { reveal } from "@/components/reveal"; // Fade-up on scroll
 
 // Closing call to action with email, LinkedIn, GitHub and resume
 export function Contact() {
@@ -15,15 +16,15 @@ export function Contact() {
         Open to AI Engineer, LLM Engineer and AI-focused full-stack roles, remote or in the Philippines.
       </p>
       <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-        {links.map((link) => {
+        {links.map((link, i) => {
           const external = link.href.startsWith("http");
           return (
-            <li key={link.label}>
+            <li key={link.label} {...reveal(i)}>
               <a
                 href={link.href}
                 {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 {...(link.label === "Resume" ? { download: true } : {})}
-                className="block rounded border border-border bg-surface p-5 transition-colors hover:border-accent"
+                className="card-hover block rounded border border-border bg-surface p-5 transition-colors hover:border-accent"
               >
                 <span className="font-mono text-xs uppercase tracking-wider text-muted">{link.label}</span>
                 <span className="mt-1 block break-all text-lg text-accent">{link.value}</span>

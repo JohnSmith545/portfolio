@@ -7,12 +7,15 @@ import { Skills } from "@/components/Skills"; // Grouped skills
 import { Certifications } from "@/components/Certifications"; // Certificates
 import { Experience } from "@/components/Experience"; // Timeline
 import { Contact } from "@/components/Contact"; // Contact links and footer
+import { RevealObserver, ScrollProgress } from "@/components/motion"; // Scroll reveal and progress bar
 
 // Single-page portfolio
 export default function Home() {
   return (
     <>
       <Nav />
+      <ScrollProgress />
+      <RevealObserver />
       <main>
         <Hero />
         <Highlights />

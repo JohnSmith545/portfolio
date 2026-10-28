@@ -1,7 +1,8 @@
 import type { ReactNode } from "react"; // Children type
-import Image from "next/image"; // Optimised, lazy-loaded screenshots
-import { integrationShots, integrations, projects, type Project, type Screenshot } from "@/data/content"; // Project list, integrations and types
+import { integrationShots, integrations, projects, type Project } from "@/data/content"; // Project list, integrations and types
 import { Section } from "@/components/Section"; // Numbered section wrapper
+import { Gallery } from "@/components/Gallery"; // Screenshots with an on-page lightbox
+import { reveal } from "@/components/reveal"; // Fade-up on scroll
 
 // Small pill tags for the tech used on a project
 function Stack({ items }: { items: string[] }) {
@@ -16,34 +17,6 @@ function Stack({ items }: { items: string[] }) {
   );
 }
 
-// Captioned screenshots; each opens full size in a new tab
-function Gallery({ shots }: { shots: Screenshot[] }) {
-  return (
-    <div className="mt-6 grid gap-4 sm:grid-cols-2">
-      {shots.map((shot) => (
-        <figure key={shot.src}>
-          <a
-            href={shot.src}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block overflow-hidden rounded border border-border transition-colors hover:border-accent"
-          >
-            <Image
-              src={shot.src}
-              alt={shot.alt}
-              width={1440}
-              height={900}
-              sizes="(min-width: 1024px) 480px, (min-width: 640px) 50vw, 100vw"
-              className="h-auto w-full"
-            />
-          </a>
-          <figcaption className="mt-2 font-mono text-xs text-muted">{shot.caption}</figcaption>
-        </figure>
-      ))}
-    </div>
-  );
-}
-
 // Third-party systems wired into Reviva, one small card each
 function Integrations() {
   return (
@@ -52,8 +25,8 @@ function Integrations() {
         Production integrations: signed webhooks, idempotent processing, retry sweeps
       </p>
       <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-        {integrations.map((item) => (
-          <li key={item.name} className="rounded border border-border bg-surface p-4">
+        {integrations.map((item, i) => (
+          <li key={item.name} {...reveal(i % 2)} className="card-hover rounded border border-border bg-surface p-4">
             <h4 className="font-mono text-sm font-semibold text-accent">{item.name}</h4>
             <p className="mt-1 text-sm leading-relaxed text-muted">{item.body}</p>
           </li>
@@ -68,7 +41,7 @@ function Integrations() {
 function ProjectCard({ project, children }: { project: Project; children?: ReactNode }) {
   const main = project.role === "Main contributor";
   return (
-    <article className="rounded border border-border bg-surface p-6 sm:p-8">
+    <article {...reveal()} className="rounded border border-border bg-surface p-5 sm:p-8">
       <div className="flex flex-wrap items-center gap-3">
         <h3 className="text-2xl font-semibold">{project.name}</h3>
         <span
