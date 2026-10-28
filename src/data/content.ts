@@ -103,12 +103,13 @@ export const integrationShots: Screenshot[] = [
 
 export type Project = {
   name: string;
-  role: "Main contributor" | "Feature contributor";
+  role: "Main contributor" | "Feature contributor" | "Personal project";
   period: string;
   summary: string;
   points: string[];
   stack: string[];
   screenshots?: Screenshot[];
+  link?: { href: string; label: string }; // public source code, for personal projects
 };
 
 // A product screenshot taken with test data and client branding blurred
@@ -185,6 +186,22 @@ export const projects: Project[] = [
       "Rate limiting and security fixes from code review",
     ],
     stack: ["TypeScript", "React", "Firebase", "FCM"],
+  },
+  {
+    name: "nutrition-label-eval",
+    role: "Personal project",
+    period: "Oct 2026",
+    summary:
+      "Open-source evaluation of a Gemini feature that reads the nutrition table off food packaging photos, scored against a hand-checked answer key.",
+    points: [
+      "59 Open Food Facts labels checked value by value against their photos; 38 database errors corrected, each with a reason",
+      "Scoring with label-rounding tolerance and named error types: per-serving reads, kJ for kcal, sodium for salt, '<0.1 g' read as 0.1, values from the wrong row",
+      "Prompt rules plus a JSON schema took whole-label accuracy from 84.7% to 94.9% (98.9% of all values)",
+      "Measured that thinking added ~50% cost and doubled latency with no accuracy gain, and that smaller photos saved no tokens",
+      "SQLite storage with SQL reporting, a paced and resumable runner, a FastAPI results viewer, Docker Compose, and CI that never calls the model",
+    ],
+    stack: ["Python", "Gemini", "Pydantic", "SQLite", "FastAPI", "Docker", "pytest", "GitHub Actions"],
+    link: { href: "https://github.com/JohnSmith545/nutrition-label-eval", label: "View the code on GitHub" },
   },
 ];
 

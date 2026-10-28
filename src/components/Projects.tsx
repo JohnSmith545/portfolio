@@ -54,6 +54,16 @@ function ProjectCard({ project, children }: { project: Project; children?: React
         <span className="ml-auto font-mono text-sm text-muted">{project.period}</span>
       </div>
       <p className="mt-3 text-muted">{project.summary}</p>
+      {project.link && (
+        <a
+          href={project.link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-block font-mono text-sm text-accent underline-offset-4 hover:underline"
+        >
+          {project.link.label} {"->"}
+        </a>
+      )}
       {project.screenshots && <Gallery shots={project.screenshots} />}
       {children}
       <ul className="mt-6 space-y-2">
@@ -73,9 +83,11 @@ function ProjectCard({ project, children }: { project: Project; children?: React
   );
 }
 
-// Projects, with Reviva expanded into a case study with screenshots and integrations
+// Projects, with Reviva expanded into a case study, then personal open-source work
 export function Projects() {
-  const [reviva, ...rest] = projects;
+  const client = projects.filter((p) => p.role !== "Personal project");
+  const personal = projects.filter((p) => p.role === "Personal project");
+  const [reviva, ...rest] = client;
   return (
     <Section id="projects" index="02 projects" title="Projects">
       <p className="mb-8 max-w-2xl text-muted">
@@ -93,6 +105,19 @@ export function Projects() {
           ))}
         </div>
       </div>
+      {personal.length > 0 && (
+        <>
+          <h3 {...reveal()} className="mt-14 text-xl font-semibold">
+            Personal projects
+          </h3>
+          <p className="mb-8 mt-2 max-w-2xl text-muted">Built on my own time and open source.</p>
+          <div className="space-y-6">
+            {personal.map((project) => (
+              <ProjectCard key={project.name} project={project} />
+            ))}
+          </div>
+        </>
+      )}
     </Section>
   );
 }
