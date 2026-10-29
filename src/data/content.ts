@@ -188,7 +188,7 @@ export const projects: Project[] = [
     stack: ["TypeScript", "React", "Firebase", "FCM"],
   },
   {
-    name: "nutrition-label-eval",
+    name: "Nutrition Label Reader Benchmark",
     role: "Personal project",
     period: "Oct 2026",
     summary:
